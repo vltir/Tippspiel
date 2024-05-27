@@ -1,0 +1,33 @@
+<!DOCTYPE html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static_resources/css/test.css">
+    <title>Tippspiel Login</title>
+</head>
+<body>
+    <div id="login_window">
+        <form th:action="@{/login}" method="post">
+            <div>
+                <label for="username" id="username_text" class="login_input username">username</label>
+                <br>
+                <input type="text" id="username" name="username" class="login_input username" required>
+            </div>
+            <div>
+                <label for="password" id="password_text" class="login_input password">password</label>
+                <br>
+                <input type="password" id="password" class="login_input password" name="password" required>
+            </div>
+            <div>
+                <button type="submit" class="login_input" id="submit">login</button>
+            </div>
+            <div class="login_type">
+                <a th:href="@{/login}" href="">log in</a>
+                <span>|</span>
+                <a th:href="@{/signin}" href="">sign in</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
