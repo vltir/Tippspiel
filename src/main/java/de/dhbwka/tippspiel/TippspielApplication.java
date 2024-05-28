@@ -7,7 +7,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
 @EntityScan(basePackages = "de.dhbwka.tippspiel.entities")
-@EnableJpaRepositories(basePackages = "de.dhbwka.tippspiel.repositories")
 public class TippspielApplication {
 
 	public static void main(String[] args) {

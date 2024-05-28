@@ -1,46 +1,49 @@
 package de.dhbwka.tippspiel.entities;
-import javax.persistence.Entity;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Table(name = "benutzerdaten", schema = "tippspiel-daten")
 public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    private String username;
-    private String password;
 
-    public User() {}
+    @jakarta.persistence.Id
+    @Column(name= "benutzerid", nullable = false)
+    private Long benutzerid;
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
+    @Column(name= "benutzername", nullable = false)
+    private String benutzername;
+
+    @Column(name= "passwort", nullable = false)
+    private String passwort;
 
     // Getters and setters
-    public Long getId() {
-        return id;
+
+    public String getPasswort() {
+        return passwort;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPasswort(String passwort) {
+        this.passwort = passwort;
     }
 
-    public String getUsername() {
-        return username;
+    public Long getBenutzerid() {
+        return benutzerid;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setBenutzerid(Long benutzerid) {
+        this.benutzerid = benutzerid;
     }
 
-    public String getPassword() {
-        return password;
+    public String getBenutzername() {
+        return benutzername;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setBenutzername(String benutzername) {
+        this.benutzername = benutzername;
     }
 }
