@@ -1,6 +1,9 @@
 body{
     /* background*/
-    background-image: url(../images/mountain.jpg);
+    /*background-image: url(../images/mountain.jpg);*/
+    /*background-image: url(https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg);*/
+    background-image: url(https://images.pexels.com/photos/1302514/pexels-photo-1302514.jpeg);
+    background-position: 25% 5%;
     background-size: cover;
 }
 #window{
@@ -18,16 +21,31 @@ body{
     border-style: solid;
     border-color: white;
     border-width: 5px;
+    border-radius: 5%;
     
     /* centering the items */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+
+      /* background style */
+    backdrop-filter: blur(2px) contrast(65%);
 }
 input{
     /* puts the text in the middle of each input*/
     text-align: center;
+    /* style for the input elements*/
+    background: none;
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+    color: white;
+}
+input:focus{
+    /* style of input element in focus*/
+    outline: none;
+    caret-color: white;
 }
 label{
     /* makes the text white*/
@@ -48,6 +66,7 @@ label{
     background: none;
     border-style: solid;
     border-color: white;
+    border-radius: 5px;
 
 }
 .login_type{
@@ -59,4 +78,12 @@ label{
 span{
     /* change link color*/
     color: white;
+}
+#signup:hover{
+    /* texteffect on hover */
+    text-decoration: underline;
+}
+#login:hover{
+    /* texteffect on hover */
+    text-decoration: underline;
 }
