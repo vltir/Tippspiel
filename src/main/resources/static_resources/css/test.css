@@ -1,8 +1,9 @@
 body{
+    /* background*/
     background-image: url(../images/mountain.jpg);
     background-size: cover;
 }
-#login_window{
+#window{
 
     /* Center the div*/
     position: fixed;
@@ -55,7 +56,7 @@ label{
     top: 4rem;
     color: white;
 }
-a:link,a:visited{
+span{
     /* change link color*/
     color: white;
 }

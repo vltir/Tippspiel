@@ -1,4 +1,5 @@
-<!DOCTYPE html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,27 +8,28 @@
     <title>Tippspiel Login</title>
 </head>
 <body>
-    <div id="login_window">
-        <form th:action="@{/login}" method="post">
+    <div id="window">
+        <form th:action="@{/login}" method="post" id="form">
             <div>
-                <label for="username" id="username_text" class="login_input username">username</label>
+                <label for="username" id="username_text" class="input username">username</label>
                 <br>
-                <input type="text" id="username" name="username" class="login_input username" required>
+                <input type="text" id="username" name="username" class="input username" required>
             </div>
             <div>
-                <label for="password" id="password_text" class="login_input password">password</label>
+                <label for="password" id="password_text" class="input password">password</label>
                 <br>
-                <input type="password" id="password" class="login_input password" name="password" required>
+                <input type="password" id="password" class="input password" name="password" required>
             </div>
             <div>
-                <button type="submit" class="login_input" id="submit">login</button>
+                <button type="submit" class="input" id="submit" name="login">login</button>
             </div>
-            <div class="login_type">
-                <a th:href="@{/login}" href="">log in</a>
+            <div class="login_type" id="switch">
+                <span id="login">login</span>
                 <span>|</span>
-                <a th:href="@{/signin}" href="">sign in</a>
+                <span id="signup">sign in</span>
             </div>
         </form>
-    </div>
+    </div> 
+    <script src="../static_resources/js/bsp.js"></script>
 </body>
 </html>
