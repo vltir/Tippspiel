@@ -1,49 +1,72 @@
 package de.dhbwka.tippspiel.entities;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
-@Table(name = "benutzerdaten", schema = "tippspiel-daten")
+@Table(name = "users")
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false)
+    private Long id;
+    @Column(name = "username", nullable = false)
+    private String username;
+    @Column(name = "email", nullable = false)
+    private String email;
+    @Column(name = "password", nullable = false)
+    private String password;
 
-    @jakarta.persistence.Id
-    @Column(name= "benutzerid", nullable = false)
-    private Long benutzerid;
-
-    @Column(name= "benutzername", nullable = false)
-    private String benutzername;
-
-    @Column(name= "passwort", nullable = false)
-    private String passwort;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles = new HashSet<>();
 
     // Getters and setters
 
-    public String getPasswort() {
-        return passwort;
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setPasswort(String passwort) {
-        this.passwort = passwort;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
-    public Long getBenutzerid() {
-        return benutzerid;
+    public String getPassword() {
+        return password;
     }
 
-    public void setBenutzerid(Long benutzerid) {
-        this.benutzerid = benutzerid;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public String getBenutzername() {
-        return benutzername;
+    public String getEmail() {
+        return email;
     }
 
-    public void setBenutzername(String benutzername) {
-        this.benutzername = benutzername;
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
