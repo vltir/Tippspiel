@@ -18,6 +18,9 @@ public class JwtResponse {
         this.token = token;
         this.type = type;
         this.id = id;
+        this.username = username;
+        this.email = email;
+        this.roles = roles;
 
     }
 

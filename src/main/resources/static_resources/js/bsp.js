@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-        button.innerHTML = "login";
-        form.action = 'login';
+        button.innerHTML = "signin";
+        form.action = 'signin';
 
 
 

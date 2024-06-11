@@ -77,12 +77,12 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
-
-        return ResponseEntity.ok(new JwtResponse(jwt,
-                userDetails.getId(),
-                userDetails.getUsername(),
-                userDetails.getEmail(),
-                roles));
+        return ResponseEntity.ok(new ModelAndView("login.html"));
+        //return ResponseEntity.ok(new JwtResponse(jwt,
+          //      userDetails.getId(),
+            //    userDetails.getUsername(),
+              //  userDetails.getEmail(),
+                //roles));
     }
 
     @PostMapping(value= "/signup", produces = "application/json")
@@ -113,7 +113,6 @@ public class AuthController {
         user.getRoles().add(userRole);
 
         userRepository.save(user);
-
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }
