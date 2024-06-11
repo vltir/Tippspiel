@@ -1,23 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" th:href="@{/test.css}">
+    <title>Tippspiel Login</title>
 </head>
 <body>
-<div class="container">
-    <h2>Login</h2>
-    <form th:action="@{/api/auth/signin}" method="post">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" th:field="${logInRequest.username}">
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" th:field="${logInRequest.password}">
-        </div>
-        <button type="submit" class="btn btn-primary">Login</button>
-    </form>
-</div>
+    <div id="window">
+        <form th:action="@{/api/auth/signin}" method="post" id="form">
+            <div>
+                <label for="username" id="username_text" class="input username" >username</label>
+                <br>
+                <input type="text" th:field="${logInRequest.username}" id="username" name="username" class="input username" required>
+            </div>
+            <div>
+                <label for="password" id="password_text" class="input password">password</label>
+                <br>
+                <input type="password" id="password" class="input password" th:field="${logInRequest.password}" name="password" required>
+            </div>
+            <div>
+                <button type="submit" class="input" id="submit" name="login">login</button>
+            </div>
+            <div class="login_type" id="switch">
+                <span id="login">login</span>
+                <span>|</span>
+                <span id="signup">sign in</span>
+            </div>
+        </form>
+    </div> 
+    <script th:src="@{/bsp.js}"></script>
 </body>
 </html>
