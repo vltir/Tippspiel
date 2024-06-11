@@ -79,6 +79,10 @@ span{
     /* change link color*/
     color: white;
 }
+a{
+    /* change link color*/
+    color: white;
+}
 #signup:hover{
     /* texteffect on hover */
     text-decoration: underline;

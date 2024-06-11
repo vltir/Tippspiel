@@ -1,4 +1,4 @@
-let count = 0;
+/*let count = 0;
 let button = document.querySelector('#submit');
 let login = document.querySelector('#login');
 let sinup = document.querySelector('#signup');
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 
-        button.innerHTML = "signin";
+        button.innerHTML = "sign in";
         form.action = 'signin';
 
 
@@ -38,3 +38,4 @@ document.addEventListener("DOMContentLoaded", function() {
 
     });
 });
+*/

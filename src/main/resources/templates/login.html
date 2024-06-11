@@ -21,12 +21,11 @@
                 <input type="password" id="password" class="input password" th:field="${logInRequest.password}" name="password" required>
             </div>
             <div>
-                <button type="submit" class="input" id="submit" name="signin">login</button>
+                <button type="submit" class="input" id="submit" name="sign in">sign in</button>
             </div>
             <div class="login_type" id="switch">
-                <span id="login">login</span>
-                <span>|</span>
-                <span id="signup">sign in</span>
+                <span>you don't have an account? </span>
+                <a id="login" href="/api/auth/signup" >sign up</a>
             </div>
         </form>
     </div> 

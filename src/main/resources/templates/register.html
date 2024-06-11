@@ -1,27 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Register</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/test.css}">
+    <title>Tippspiel Login</title>
 </head>
 <body>
-<div class="container">
-    <h2>Register</h2>
-    <form th:action="@{/api/auth/signup}" method="post">
-        <div class="form-group">
-            <label for="username">Username:</label>
-            <input type="text" class="form-control" id="username" name="username" th:field="${signUpRequest.username}" />
-        </div>
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" th:field="${signUpRequest.email}">
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input type="password" class="form-control" id="password" name="password" th:field="${signUpRequest.password}">
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-    </form>
-</div>
+    <div id="window">
+        <form th:action="@{/api/auth/signup}" method="post" id="form">
+            <div>
+                <label for="username" id="username_text" class="input username" >username</label>
+                <br>
+                <input type="text" th:field="${signUpRequest.username}" id="username" name="username" class="input username" required>
+            </div>
+            <div>
+                <label for="email" id="email_text" class="input email">email</label>
+                <br>
+                <input type="text" id="email" class="input email" th:field="${signUpRequest.email}" name="email" required>
+            </div>
+            <div>
+                <label for="password" id="password_text" class="input password">password</label>
+                <br>
+                <input type="password" id="password" class="input password" th:field="${signUpRequest.password}" name="password" required>
+            </div>
+            <div>
+                <button type="submit" class="input" id="submit" name="sign in">sign up</button>
+            </div>
+            <div class="login_type" id="switch">
+                <span>already have an account? </span>
+                <a id="login" href="/api/auth/signin" >sign in</a>
+            </div>
+        </form>
+    </div> 
+    <script th:src="@{/bsp.js}" src="../static_resources/js/bsp.js"></script>
 </body>
 </html>
