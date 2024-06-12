@@ -60,11 +60,16 @@ public class AuthController {
         model.addAttribute("signUpRequest", new SignupRequest());
         return new ModelAndView("register.html");
     }
+    @GetMapping("/test")
+    public ModelAndView showTestPage(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        return new ModelAndView("test.html");
+    }
 
     @PostMapping(value= "/signin", produces = "application/json")
-    public ResponseEntity<?> authenticateUser(@RequestParam("username") String username,
+    public ModelAndView authenticateUser(@RequestParam("username") String username,
                                               @RequestParam("password") String password,
-                                              HttpServletResponse response) {
+                                              HttpServletResponse response, Model model) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password));
 
@@ -86,7 +91,7 @@ public class AuthController {
         cookie.setMaxAge(7 * 24 * 60 * 60); // Gültigkeit 1 Woche
         response.addCookie(cookie);
 
-        return ResponseEntity.ok(new ModelAndView("login.html"));
+        return new ModelAndView("redirect:/api/auth/test");
         //return ResponseEntity.ok(new JwtResponse(jwt,
           //      userDetails.getId(),
             //    userDetails.getUsername(),
@@ -95,19 +100,15 @@ public class AuthController {
     }
 
     @PostMapping(value= "/signup", produces = "application/json")
-    public ResponseEntity<?> registerUser(@RequestParam("username") String username,
+    public ModelAndView registerUser(@RequestParam("username") String username,
                                           @RequestParam("email") String email,
                                           @RequestParam("password") String password) {
         if (userRepository.existsByUsername(username)) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Username is already taken!"));
+            return new ModelAndView("redirect:/api/auth/signup");
         }
 
         if (userRepository.existsByEmail(email)) {
-            return ResponseEntity
-                    .badRequest()
-                    .body(new MessageResponse("Error: Email is already in use!"));
+            return new ModelAndView("redirect:/api/auth/signup");
         }
 
         // Create new user's account
@@ -122,7 +123,7 @@ public class AuthController {
         user.getRoles().add(userRole);
 
         userRepository.save(user);
-        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
+        return new ModelAndView("redirect:/api/auth/signin");
     }
 }
 
