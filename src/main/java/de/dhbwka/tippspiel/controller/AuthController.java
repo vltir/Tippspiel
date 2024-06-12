@@ -5,6 +5,8 @@ import de.dhbwka.tippspiel.entities.Role;
 import de.dhbwka.tippspiel.entities.User;
 import de.dhbwka.tippspiel.services.RoleService;
 import de.dhbwka.tippspiel.services.UserDetailsImpl;
+import jakarta.servlet.http.Cookie;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,9 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import de.dhbwka.tippspiel.repositories.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.security.core.GrantedAuthority;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -63,7 +63,8 @@ public class AuthController {
 
     @PostMapping(value= "/signin", produces = "application/json")
     public ResponseEntity<?> authenticateUser(@RequestParam("username") String username,
-                                              @RequestParam("password") String password) {
+                                              @RequestParam("password") String password,
+                                              HttpServletResponse response) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(username, password));
 
@@ -77,6 +78,14 @@ public class AuthController {
         List<String> roles = userDetails.getAuthorities().stream()
                 .map(GrantedAuthority::getAuthority)
                 .collect(Collectors.toList());
+        // Setzen des Cookies mit dem JWT-Token
+        Cookie cookie = new Cookie("authToken", jwt);
+        cookie.setHttpOnly(true);
+        cookie.setSecure(false); // false, damit es für http in der lokalen Entwicklungsumgeung gesendet werden kann.
+        cookie.setPath("/");
+        cookie.setMaxAge(7 * 24 * 60 * 60); // Gültigkeit 1 Woche
+        response.addCookie(cookie);
+
         return ResponseEntity.ok(new ModelAndView("login.html"));
         //return ResponseEntity.ok(new JwtResponse(jwt,
           //      userDetails.getId(),
