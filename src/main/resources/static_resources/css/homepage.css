@@ -1,0 +1,36 @@
+html{
+    background: url(https://images.unsplash.com/photo-1717781617540-9f31ba241a4e?q=80&w=2129&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+
+}
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border-color: white;
+    border-style: solid;
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border-width: 1px;
+  }
+  
+  li {
+    float: left;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change the link color to #111 (black) on hover */
+  li a:hover {
+    background: rgb(255, 255, 255);
+    color: black;
+  }
+  p{
+      color: white;
+  }
