@@ -23,6 +23,8 @@ public class Verein {
     public String getVereinsName() {
         if(this.vereinsName != null) {
             return this.vereinsName;
+        } else {
+            return null;
         }
     }
 
