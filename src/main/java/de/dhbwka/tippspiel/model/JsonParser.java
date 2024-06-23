@@ -21,7 +21,7 @@ public class JsonParser {
     private String urlBl1Tabelle;
 
 
-    private String urlBl1AktuellerSpieltag = "https://api.openligadb.de/getcurrentgroup/bl1";
+    private String urlBl1AktuellerSpieltag = "https://api.openligadb.de/getcurrentgroup/em";
     private String urlBl1SpieltagUebersicht;
 
     private String jsonResponseTabelle = "";
@@ -62,9 +62,6 @@ public class JsonParser {
     }
 
     private URL getJsonResponse(String url) {
-
-        System.setProperty("https.proxyHost", "pro-campus.noc.fiducia.de");
-        System.setProperty("https.proxyPort", "8080");
 
         URL response = null;
         HttpURLConnection conn = null;
@@ -255,15 +252,15 @@ public class JsonParser {
 
         int arrayPostionSpielErgebnis = 1;
 
-        switch (bl1SpieltagUebersichtJahr) {
-            case "2022" :
-            case "2021" :
-            case "2020" :
-                arrayPostionSpielErgebnis = 0;
-                break;
-            default :
-                break;
-        }
+//        switch (bl1SpieltagUebersichtJahr) {
+//            case "2022" :
+//            case "2021" :
+//            case "2020" :
+//                arrayPostionSpielErgebnis = 0;
+//                break;
+//            default :
+//                break;
+//        }
 
         JSONArray jsonArraySpielErgebnis = jsonObject.getJSONArray("matchResults");
         if (jsonArraySpielErgebnis != null && jsonArraySpielErgebnis.length() == 2) {
@@ -311,13 +308,13 @@ public class JsonParser {
     public void setUrlBl1SpieltagUebersicht(String bl1SpieltagAuswahl, String bl1SpieltagUebersichtJahr) {
         this.bl1SpieltagAuswahl = bl1SpieltagAuswahl;
         this.bl1SpieltagUebersichtJahr = bl1SpieltagUebersichtJahr;
-        urlBl1SpieltagUebersicht = "https://api.openligadb.de/getmatchdata/bl1/" + this.bl1SpieltagUebersichtJahr + "/"
+        urlBl1SpieltagUebersicht = "https://api.openligadb.de/getmatchdata/em/" + this.bl1SpieltagUebersichtJahr + "/"
                 + this.bl1SpieltagAuswahl;
     }
 
     public void setUrlBl1Tabelle(String urlBl1Tabelle) {
         this.bl1TabelleJahr = urlBl1Tabelle;
-        this.urlBl1Tabelle = "https://api.openligadb.de/getbltable/bl1/" + bl1TabelleJahr;
+        this.urlBl1Tabelle = "https://api.openligadb.de/getbltable/em/" + bl1TabelleJahr;
 
     }
 

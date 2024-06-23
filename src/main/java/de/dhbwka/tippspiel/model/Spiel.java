@@ -83,4 +83,8 @@ public class Spiel {
     public void setDatum(String datum) {
         this.datum = datum;
     }
+
+    public void setSpielTore(List<Tore> spielTore) {
+        this.spielTore = spielTore;
+    }
 }

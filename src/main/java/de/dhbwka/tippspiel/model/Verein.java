@@ -11,6 +11,7 @@ public class Verein {
     private int siege = 0;
     private int niederlagen = 0;
     private int unentschieden = 0;
+    private String bild = "";
 
     public Verein(String vereinsName) {
         this.vereinsName = vereinsName;
@@ -80,4 +81,11 @@ public class Verein {
         this.unentschieden = unentschieden;
     }
 
+    public String getBild() {
+        return bild;
+    }
+
+    public void setBild(String bild) {
+        this.bild = bild;
+    }
 }
