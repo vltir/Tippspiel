@@ -18,6 +18,17 @@ public class Spiel {
     private String liga;
     private String spielZeit;
     private String datum;
+    private Group group;
+    private String lastUpdateDateTime;
+    private Boolean matchIsFinished;
+
+    public Group getGroup() {
+        return group;
+    }
+
+    public void setGroup(Group group) {
+        this.group = group;
+    }
 
     public Verein getHeimverein() {
         return heimverein;
@@ -85,6 +96,25 @@ public class Spiel {
     }
 
     public void setSpielTore(List<Tore> spielTore) {
-        this.spielTore = spielTore;
+
+    }
+
+    public void setMatchID(Integer matchID) {
+    }
+
+    public void setLastUpdateDateTime(String lastUpdateDateTime) {
+        this.lastUpdateDateTime = lastUpdateDateTime;
+    }
+
+    public String getLastUpdateDateTime() {
+        return lastUpdateDateTime;
+    }
+
+    public void setMatchIsFinished(Boolean matchIsFinished) {
+        this.matchIsFinished = matchIsFinished;
+    }
+
+    public Boolean getMatchIsFinished() {
+        return matchIsFinished;
     }
 }

@@ -3,8 +3,9 @@ package de.dhbwka.tippspiel.model;
 
 
 public class Verein {
-
+    private int vereinsId;
     private String vereinsName;
+    private String shortname;
     private int tore = 0;
     private int spiele = 0;
     private int punkte = 0;
@@ -27,6 +28,22 @@ public class Verein {
         } else {
             return null;
         }
+    }
+
+    public String getShortname() {
+        return shortname;
+    }
+
+    public void setShortname(String shortname) {
+        this.shortname = shortname;
+    }
+
+    public int getVereinsId() {
+        return vereinsId;
+    }
+
+    public void setVereinsId(int vereinsId) {
+        this.vereinsId = vereinsId;
     }
 
     public void setVereinsName(String vereinsName) {
