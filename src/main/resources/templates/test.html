@@ -19,5 +19,13 @@
       <p>Hallo :</p>
       <p th:text="${authToken}"> </p>
 
+        <div>
+            <div th:each="spiel : ${spiele}">
+                <span th:text="${spiel.getHeimverein().getVereinsName()}"></span> <span th:text="${spiel.getHeimVereinTore()}"></span> : <span th:text="${spiel.getAuswaertsVereinTore()}"></span> <span th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span><br><hr><br>
+            </div>
+        </div>
+
+
+
 </body>
 </html>

@@ -1,6 +1,8 @@
 package de.dhbwka.tippspiel.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.filter.OrderedFormContentFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -70,6 +72,8 @@ public class WebSecurityConfig {
 
         return http.build();
     }
+
+
 }
 
 

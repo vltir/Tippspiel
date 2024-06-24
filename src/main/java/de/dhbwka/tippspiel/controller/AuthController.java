@@ -3,10 +3,14 @@ package de.dhbwka.tippspiel.controller;
 import de.dhbwka.tippspiel.entities.ERole;
 import de.dhbwka.tippspiel.entities.Role;
 import de.dhbwka.tippspiel.entities.User;
+import de.dhbwka.tippspiel.model.Group;
+import de.dhbwka.tippspiel.model.OpenLigaDBParser;
+import de.dhbwka.tippspiel.model.Spiel;
 import de.dhbwka.tippspiel.services.RoleService;
 import de.dhbwka.tippspiel.services.UserDetailsImpl;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
+import org.aspectj.apache.bcel.classfile.Module;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -63,6 +67,10 @@ public class AuthController {
     @GetMapping("/test")
     public ModelAndView showTestPage(@CookieValue("authToken") String authToken, Model model) {
         model.addAttribute("authToken", authToken);
+        OpenLigaDBParser parser = new OpenLigaDBParser();
+        Group group = parser.parseAktuelleGroup();
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
+        model.addAttribute("spiele", spiele);
         return new ModelAndView("test.html");
     }
 
