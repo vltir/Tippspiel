@@ -38,10 +38,59 @@ public class SpringController {
     private OpenLigaDBParser parser = new OpenLigaDBParser();
 
     @GetMapping("/results/current")
-    public ModelAndView showResultPage(@CookieValue("authToken") String authToken, Model model) {
+    public ModelAndView showResultPageCurrent(@CookieValue("authToken") String authToken, Model model) {
         model.addAttribute("authToken", authToken);
         Group group = parser.parseAktuelleGroup();
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
+        model.addAttribute("spiele", spiele);
+        return new ModelAndView("results.html");
+    }
+    @GetMapping("/results/1")
+    public ModelAndView showResultPage1(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(1);
+        model.addAttribute("spiele", spiele);
+        return new ModelAndView("results.html");
+    }
+    @GetMapping("/results/2")
+    public ModelAndView showResultPage2(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(2);
+        model.addAttribute("spiele", spiele);
+        return new ModelAndView("results.html");
+    }
+    @GetMapping("/results/3")
+    public ModelAndView showResultPage3(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(3);
+        model.addAttribute("spiele", spiele);
+        return new ModelAndView("results.html");
+    }
+    @GetMapping("/results/4")
+    public ModelAndView showResultPage4(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(4);
+        model.addAttribute("spiele", spiele);
+        return new ModelAndView("results.html");
+    }
+    @GetMapping("/results/5")
+    public ModelAndView showResultPage5(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(5);
+        model.addAttribute("spiele", spiele);
+        return new ModelAndView("results.html");
+    }
+    @GetMapping("/results/6")
+    public ModelAndView showResultPage6(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(6);
+        model.addAttribute("spiele", spiele);
+        return new ModelAndView("results.html");
+    }
+    @GetMapping("/results/7")
+    public ModelAndView showResultPage7(@CookieValue("authToken") String authToken, Model model) {
+        model.addAttribute("authToken", authToken);
+        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(7);
         model.addAttribute("spiele", spiele);
         return new ModelAndView("results.html");
     }
