@@ -1,10 +1,43 @@
-body{
+html{
     /* background*/
     /*background-image: url(../images/mountain.jpg);*/
     /*background-image: url(https://images.pexels.com/photos/114296/pexels-photo-114296.jpeg);*/
-    background-image: url(https://images.pexels.com/photos/1302514/pexels-photo-1302514.jpeg);
-    background-position: 25% 5%;
-    background-size: cover;
+    background-image: url(https://images.unsplash.com/photo-1617623504859-5d0603345834?q=80&w=2113&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+        backdrop-filter: blur(10px);
+        background-size: cover;
+        background-position: 25% 55%;
+        cursor: none;
+        --height:100px;
+}
+.cursor{
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    z-index: 5;
+    pointer-events: none;
+    width: 10px;
+    height: 10px;
+    background-color: white;
+    border-width: 5;
+    border-style: none;
+
+}
+.outline{
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%,-50%);
+    border-radius: 50%;
+    border-style: solid;
+    z-index: 3;
+    pointer-events: none;
+    width: 100px;
+    height: 100px;
+    border-width: 1;
+    border-style: none;
+    backdrop-filter: blur(4px) saturate(10%) invert(100%);
 }
 #window{
 
@@ -18,10 +51,10 @@ body{
     margin: auto;
 
     /* border style */
+    border-radius: 5%;
     border-style: solid;
     border-color: white;
-    border-width: 5px;
-    border-radius: 5%;
+    border-width: 1px;
     
     /* centering the items */
     display: flex;
@@ -30,7 +63,16 @@ body{
     text-align: center;
 
       /* background style */
-    backdrop-filter: blur(2px) contrast(65%);
+    background-color: none;
+    backdrop-filter: blur(4px);
+
+    /*additions*/
+    cursor: none;
+    z-index: 4;
+}
+#window:hover{
+    transition-duration: 1s;
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.062), 0 6px 20px 0 rgba(255, 255, 255, 0.048);
 }
 input{
     /* puts the text in the middle of each input*/
@@ -38,18 +80,44 @@ input{
     /* style for the input elements*/
     background: none;
     border-style: solid;
-    border-color: white;
     border-radius: 5px;
+    outline: none;
+    border-color: white;
+    border-width: 1px;
     color: white;
+    transition-duration: 1s;
+
+}
+input:hover{
+
+    transition-duration: 1s;
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.308), 0 6px 20px 0 rgba(255, 255, 255, 0.267);
+    border-style: solid;
+    cursor: none;
+
+}
+input::placeholder{
+    color:white;
+    cursor: none;
 }
 input:focus{
-    /* style of input element in focus*/
+
+    border-style: solid;
+    caret:none;
+    caret-color: transparent;
     outline: none;
-    caret-color: white;
+    background: none;
+    cursor: none;
+
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.308), 0 6px 20px 0 rgba(255, 255, 255, 0.267);
 }
 label{
     /* makes the text white*/
     color: white;
+    cursor:none
+}
+label:hover{
+cursor:none
 }
 #submit{
     /* adjust button position*/
@@ -63,12 +131,26 @@ label{
     color: white;
 
     /* button style*/
+    outline: none;
     background: none;
-    border-style: solid;
     border-color: white;
+    border-width: 1px;
+    border-style: solid;
     border-radius: 5px;
 
 }
+#submit:hover{
+    transition-duration: 1s;
+    cursor: none;
+    box-shadow: 0 8px 16px 0 rgba(255, 255, 255, 0.308), 0 6px 20px 0 rgba(255, 255, 255, 0.267);
+    border-style: none;
+    background:fixed;
+    background-color: white;
+}
+#particles{
+    z-index: 2;
+}
+
 .login_type{
     /* adjust login type position*/
     position: relative;
@@ -91,3 +173,4 @@ a{
     /* texteffect on hover */
     text-decoration: underline;
 }
+
