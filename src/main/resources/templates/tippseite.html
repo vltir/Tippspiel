@@ -1,0 +1,61 @@
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/results.css}">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li><a href="http://localhost:8080/em2024/test">Home</a></li>
+        <li><a href="http://localhost:8080/em2024/tipps">Tipps</a></li>
+        <li><a href="http://localhost:8080/em2024/results/current">Results</a></li>
+        <li><a href="http://localhost:8080/em2024/about">About</a></li>
+      </ul>
+
+      <div class="dropdown">
+      <select id="dropdown"onchange="switchSite(value)" >
+        <option value="current" >heute</option>
+        <option value="1" >1. Spieltag</option>
+        <option value="2" >2. Spieltag</option>
+        <option value="3" >3. Spieltag</option>
+        <option value="4">4. Spieltag</option>
+        <option value="5">5. Spieltag</option>
+        <option value="6">6. Spieltag</option>
+        <option value="7">7. Spieltag</option>
+      </select>
+      </div>
+
+      <div class="window" th:each="spiel : ${spiele}">
+          <span th:if="${spiel.getMatchIsFinished()}" class=".finished">
+        <form method="post" th:action="@{/em2024/results/}">
+            <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
+            <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
+
+          <span class="text">
+            <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
+            <span th:if="${spiel.getMatchIsFinished()}"><span class="score_left" th:text="${spiel.getHeimVereinTore()}"></span></span>
+
+              <span th:unless="${spiel.getMatchIsFinished()}">
+                  <input type="number" name="HeimVereinTore">
+
+            <span class="divide">:</span>
+
+              <span th:if="${spiel.getMatchIsFinished()}">
+                <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}">2</span>
+            </span>
+              <span th:unless="${spiel.getMatchIsFinished()}">
+                <input type="number" name="AuswaertsVereinTore">
+              </span>
+              <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
+          </span>
+        </form>
+    </span>
+      </div>
+
+    <script type="text/javascript" th:src="@{/results.js}"></script>
+
+</body>
+</html>
