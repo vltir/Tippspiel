@@ -48,7 +48,6 @@ public class JwtUtils {
                     .parseClaimsJws(authToken);
             return true;
         } catch (Exception e) {
-            // Log the exception
         }
         return false;
     }
