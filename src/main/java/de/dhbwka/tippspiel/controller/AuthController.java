@@ -99,7 +99,7 @@ public class AuthController {
         cookie.setMaxAge(7 * 24 * 60 * 60); // Gültigkeit 1 Woche
         response.addCookie(cookie);
 
-        return new ModelAndView("redirect:/api/auth/test");
+        return new ModelAndView("redirect:/em2024/results/current");
         //return ResponseEntity.ok(new JwtResponse(jwt,
           //      userDetails.getId(),
             //    userDetails.getUsername(),
