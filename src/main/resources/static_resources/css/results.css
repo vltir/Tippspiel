@@ -56,27 +56,28 @@ ul {
     left: 27rem;
 }
 .team_left{
-    position: relative;
     top: -6.5rem;
     left: 9rem;
 }
 .team_right{
-    position: relative;
     top: -6.5rem;
     left: 13.5rem;
 }
 .score_left{
-    position: relative;
     top: -6.5rem;
-    left: 3rem;
+    left: 5rem;
 }
 .score_right{
-    position: relative;
     top: -6.5rem;
-    left: 3rem;
+    left: 5rem;
 }
 .divide{
-    position: relative;
     top: -6.5rem;
-    left: 3rem;
+    left: 5rem;
+}
+.text{
+position:relative;
+    top: -6.5rem;
+    left: 12rem;
+
 }
