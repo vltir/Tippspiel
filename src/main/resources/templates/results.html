@@ -9,11 +9,25 @@
 </head>
 <body>
     <ul>
-        <li><a href="test">Home</a></li>
-        <li><a href="tipps">Tipps</a></li>
-        <li><a href="results">Results</a></li>
-        <li><a href="about">About</a></li>
+      <li><a href="http://localhost:8080/em2024/test">Home</a></li>
+      <li><a href="http://localhost:8080/em2024/tipps">Tipps</a></li>
+      <li><a href="http://localhost:8080/em2024/results/current">Results</a></li>
+      <li><a href="http://localhost:8080/em2024/about">About</a></li>
       </ul>
+
+      <div class="dropdown">
+      <select id="dropdown"onchange="switchSite(value)" >
+        <option value="current" >heute</option>
+        <option value="1" >1. Spieltag</option>
+        <option value="2" >2. Spieltag</option>
+        <option value="3" >3. Spieltag</option>
+        <option value="4">4. Spieltag</option>
+        <option value="5">5. Spieltag</option>
+        <option value="6">6. Spieltag</option>
+        <option value="7">7. Spieltag</option>
+      </select>
+      </div>
+
       <div class="window" th:each="spiel : ${spiele}">
 
             <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
@@ -34,7 +48,8 @@
           </span>
 
       </div>
-      
+
+    <script type="text/javascript" th:src="@{/results.js}"></script>
 
 </body>
 </html>
