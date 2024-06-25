@@ -64,15 +64,6 @@ public class AuthController {
         model.addAttribute("signUpRequest", new SignupRequest());
         return new ModelAndView("register.html");
     }
-    @GetMapping("/test")
-    public ModelAndView showTestPage(@CookieValue("authToken") String authToken, Model model) {
-        model.addAttribute("authToken", authToken);
-        OpenLigaDBParser parser = new OpenLigaDBParser();
-        Group group = parser.parseAktuelleGroup();
-        List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
-        model.addAttribute("spiele", spiele);
-        return new ModelAndView("test.html");
-    }
 
     @PostMapping(value= "/signin", produces = "application/json")
     public ModelAndView authenticateUser(@RequestParam("username") String username,
