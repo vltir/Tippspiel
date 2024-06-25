@@ -21,9 +21,15 @@
 
           <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
-            <span class="score_left" th:text="${spiel.getHeimVereinTore()}"></span>
+            <span th:if="${spiel.getMatchIsFinished()}"><span class="score_left" th:text="${spiel.getHeimVereinTore()}"></span></span>
+              <span th:unless="${spiel.getMatchIsFinished()}"><span class="score_left">-</span></span>
             <span class="divide">:</span>
-            <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}">2</span>
+              <span th:if="${spiel.getMatchIsFinished()}">
+                <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}">2</span>
+            </span>
+              <span th:unless="${spiel.getMatchIsFinished()}">
+                  <span class="score_right">-</span>
+              </span>
               <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
           </span>
 
