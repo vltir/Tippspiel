@@ -1,3 +1,8 @@
+.site{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
 #dropdown{
     position: relative;
     top: 1rem;
@@ -38,53 +43,41 @@ ul {
       width: 5rem;
       border-radius: 50%;
   }
-  .window{
+  #window{
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
       margin-top: 2rem;
       border-style: solid;
       width: 36rem;
       height: 9rem;
   }
   .logo_left{
-      position: relative;
       border-style: solid;
       border-radius: 50%;
       width: 5rem;
       height: 5rem;
-      top: 2rem;
-      left: 3rem;
   }
   .logo_right{
-    position: relative;
     border-style: solid;
     border-radius: 50%;
     width: 5rem;
     height: 5rem;
-    top: -3.3rem;
-    left: 27rem;
 }
-.team_left{
-    top: -6.5rem;
-    left: 9rem;
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
-.team_right{
-    top: -6.5rem;
-    left: 13.5rem;
-}
-.score_left{
-    top: -6.5rem;
-    left: 5rem;
-}
-.score_right{
-    top: -6.5rem;
-    left: 5rem;
-}
-.divide{
-    top: -6.5rem;
-    left: 5rem;
-}
-.text{
-position:relative;
-    top: -6.5rem;
-    left: 12rem;
 
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+.submit{
+    position: relative;
+    top: 1rem;
+    background: none;
+    border-style: solid;
+    border-color:black ;
 }

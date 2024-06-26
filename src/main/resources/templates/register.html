@@ -8,6 +8,8 @@
     <title>Tippspiel Login</title>
 </head>
 <body>
+<div class="cursor"></div>
+<div class="outline"></div>
     <div id="window">
         <form th:action="@{/api/auth/signup}" method="post" id="form">
             <div>
@@ -33,7 +35,23 @@
                 <a id="login" href="/api/auth/signin" >sign in</a>
             </div>
         </form>
-    </div> 
+    </div>
+<div class="count-particles">
+    <span class="js-count-particles"></span>
+</div>
+
+<!-- particles.js container -->
+<div id="particles-js"></div>
+</body>
+<script th:src="@{/login1.js}" src="../static_resources/js/bsp.js"></script>
+<div id="particles">
+    <script th:src="@{/login2.js}" src="../static_resources/js/bsp.js"></script>
+    <script th:src="@{/login3.js}" src="../static_resources/js/bsp.js"></script>
+
+    <!-- stats.js -->
+    <<script th:src="@{/login4.js}" src="../static_resources/js/bsp.js"></script>
+
+</div>
     <script th:src="@{/bsp.js}" src="../static_resources/js/bsp.js"></script>
 </body>
 </html>

@@ -1,6 +1,6 @@
 const cursor = document.querySelector(".cursor");
 const outline = document.querySelector(".outline");
-const form = document.querySelector("#form");
+const form = document.querySelector("#window");
 
 const input = document.querySelector("input");
 

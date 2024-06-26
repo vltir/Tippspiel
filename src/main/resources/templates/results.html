@@ -8,13 +8,15 @@
     <title>Document</title>
 </head>
 <body>
+<div class="cursor"></div>
+<div class="outline"></div>
     <ul>
       <li><a href="http://localhost:8080/em2024/test">Home</a></li>
       <li><a href="http://localhost:8080/em2024/tipps">Tipps</a></li>
       <li><a href="http://localhost:8080/em2024/results/current">Results</a></li>
       <li><a href="http://localhost:8080/em2024/about">About</a></li>
       </ul>
-
+    <div class="site">
       <div class="dropdown">
       <select id="dropdown"onchange="switchSite(value)" >
         <option value="current" >heute</option>
@@ -27,11 +29,9 @@
         <option value="7">7. Spieltag</option>
       </select>
       </div>
-
-      <div class="window" th:each="spiel : ${spiele}">
+      <div id="window" th:each="spiel : ${spiele}">
 
             <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
-            <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
 
           <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
@@ -46,10 +46,10 @@
               </span>
               <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
           </span>
-
+          <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
       </div>
-
+    <script type="text/javascript" th:src="@{/login1}"></script>
     <script type="text/javascript" th:src="@{/results.js}"></script>
-
+    </div>
 </body>
 </html>
