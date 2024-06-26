@@ -5,6 +5,7 @@ import de.dhbwka.tippspiel.model.OpenLigaDBParser;
 import de.dhbwka.tippspiel.model.Spiel;
 import de.dhbwka.tippspiel.repositories.RoleRepository;
 import de.dhbwka.tippspiel.repositories.UserRepository;
+import de.dhbwka.tippspiel.services.TippVerarbeitungsService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -35,6 +36,8 @@ public class SpringController {
 
     private OpenLigaDBParser parser = new OpenLigaDBParser();
 
+    private TippVerarbeitungsService tippService = new TippVerarbeitungsService();
+
     @GetMapping("/tipps")
     public ModelAndView showTippsPageCurrent(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
@@ -49,12 +52,22 @@ public class SpringController {
     }
 
     @PostMapping(value= "/results/tipp", produces = "application/json")
-    public ModelAndView authenticateUser(@RequestParam("HeimVereinTore") Integer heimvereintore, @RequestParam("AuswaertsVereinTore") Integer auswaertsvereintore, @CookieValue("authToken") String authToken, Model model) {
+    public ModelAndView authenticateUser(@RequestParam("matchID") int matchID, @RequestParam("HeimVereinTore") Integer heimvereintore, @RequestParam("AuswaertsVereinTore") Integer auswaertsvereintore, @CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
             Group group = parser.parseAktuelleGroup();
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
             model.addAttribute("spiele", spiele);
+
+            Spiel spiel = tippService.getSpielVonMatchID(matchID, spiele);
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            tippService.speichereTippVonBenutzerBeiMatch(username, heimvereintore, auswaertsvereintore, matchID);
+
+            if (spiel.getMatchIsFinished()) {
+                int punktzahl = tippService.berechnePunktzahlFuerSpieltipp(heimvereintore, auswaertsvereintore, spiel);
+                tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
+            }
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");

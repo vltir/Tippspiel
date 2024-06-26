@@ -7,6 +7,8 @@ import de.dhbwka.tippspiel.repositories.BenutzerpunkteRepository;
 import de.dhbwka.tippspiel.repositories.BenutzertippRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+
 public class TippVerarbeitungsService {
 
     @Autowired
@@ -39,6 +41,15 @@ public class TippVerarbeitungsService {
         } else {
             return 2;
         }
+    }
+
+    public Spiel getSpielVonMatchID(int matchID, List<Spiel> spiele) {
+        for(Spiel spiel : spiele) {
+            if (spiel.getMatchID() == matchID) {
+                return spiel;
+            }
+        }
+        return null;
     }
 
     public void speichereTippVonBenutzerBeiMatch(String username, int toreHeim, int toreAuswaerts, int matchID) {

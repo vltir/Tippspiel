@@ -22,6 +22,16 @@ public class Spiel {
     private String lastUpdateDateTime;
     private Boolean matchIsFinished;
 
+    private int matchID;
+
+    public int getMatchID() {
+        return matchID;
+    }
+
+    public void setMatchID(int matchID) {
+        this.matchID = matchID;
+    }
+
     public Group getGroup() {
         return group;
     }
@@ -99,8 +109,7 @@ public class Spiel {
 
     }
 
-    public void setMatchID(Integer matchID) {
-    }
+
 
     public void setLastUpdateDateTime(String lastUpdateDateTime) {
         this.lastUpdateDateTime = lastUpdateDateTime;
