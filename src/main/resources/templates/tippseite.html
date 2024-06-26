@@ -12,7 +12,7 @@
 <div class="outline"></div>
 <ul>
     <li><a href="http://localhost:8080/em2024/test">Home</a></li>
-    <li><a href="http://localhost:8080/em2024/tipps">Tipps</a></li>
+    <li><a href="http://localhost:8080/em2024/tipps/current">Tipps</a></li>
     <li><a href="http://localhost:8080/em2024/results/current">Results</a></li>
     <li><a href="http://localhost:8080/em2024/about">About</a></li>
 </ul>
@@ -41,8 +41,7 @@
                   <span class="score_left"><input type="number" style="width: 1rem"></span></span>
             <span class="divide">:</span>
               <span th:if="${spiel.getMatchIsFinished()}">
-                <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}">2</span>
-            </span>
+                <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}"></span></span>
               <span th:unless="${spiel.getMatchIsFinished()}">
                   <span class="score_right"><input type="number" style="width: 1rem"></span>
               </span>

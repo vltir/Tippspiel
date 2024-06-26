@@ -38,7 +38,7 @@ public class SpringController {
 
     private TippVerarbeitungsService tippService = new TippVerarbeitungsService();
 
-    @GetMapping("/tipps")
+    @GetMapping("/tipps/current")
     public ModelAndView showTippsPageCurrent(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
@@ -50,13 +50,89 @@ public class SpringController {
             return new ModelAndView("redirect:/api/auth/signin");
         }
     }
+    @GetMapping("/tipps/1")
+    public ModelAndView showTippsPage1(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(1);
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+    @GetMapping("/tipps/2")
+    public ModelAndView showTippsPage2(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(2);
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+    @GetMapping("/tipps/3")
+    public ModelAndView showTippsPage3(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(3);
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+    @GetMapping("/tipps/4")
+    public ModelAndView showTippsPage4(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(4);
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+    @GetMapping("/tipps/5")
+    public ModelAndView showTippsPage5(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(5);
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+    @GetMapping("/tipps/6")
+    public ModelAndView showTippsPage6(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(6);
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+    @GetMapping("/tipps/7")
+    public ModelAndView showTippsPage7(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(7);
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
 
     @PostMapping(value= "/results/tipp", produces = "application/json")
     public ModelAndView authenticateUser(@RequestParam("matchID") int matchID, @RequestParam("HeimVereinTore") Integer heimvereintore, @RequestParam("AuswaertsVereinTore") Integer auswaertsvereintore, @CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
-            Group group = parser.parseAktuelleGroup();
-            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
+            List<Spiel> spiele = parser.parseAlleSpiele();
             model.addAttribute("spiele", spiele);
 
             Spiel spiel = tippService.getSpielVonMatchID(matchID, spiele);
