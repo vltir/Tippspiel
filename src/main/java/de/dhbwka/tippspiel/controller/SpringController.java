@@ -5,14 +5,12 @@ import de.dhbwka.tippspiel.model.OpenLigaDBParser;
 import de.dhbwka.tippspiel.model.Spiel;
 import de.dhbwka.tippspiel.repositories.RoleRepository;
 import de.dhbwka.tippspiel.repositories.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -36,6 +34,32 @@ public class SpringController {
     JwtUtils jwtUtils;
 
     private OpenLigaDBParser parser = new OpenLigaDBParser();
+
+    @GetMapping("/tipps")
+    public ModelAndView showTippsPageCurrent(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            Group group = parser.parseAktuelleGroup();
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+
+    @PostMapping(value= "/results/tipp", produces = "application/json")
+    public ModelAndView authenticateUser(@RequestParam("HeimVereinTore") Integer heimvereintore, @RequestParam("AuswaertsVereinTore") Integer auswaertsvereintore, @CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            Group group = parser.parseAktuelleGroup();
+            List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
+            model.addAttribute("spiele", spiele);
+            return new ModelAndView("tippseite.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
 
     @GetMapping("/results/current")
     public ModelAndView showResultPageCurrent(@CookieValue("authToken") String authToken, Model model) {

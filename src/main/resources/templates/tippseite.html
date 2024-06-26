@@ -30,7 +30,7 @@
 
       <div class="window" th:each="spiel : ${spiele}">
           <span th:if="${spiel.getMatchIsFinished()}" class=".finished">
-        <form method="post" th:action="@{/em2024/results/}">
+        <form method="post" th:action="@{/em2024/results/tipp}">
             <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
             <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
 
