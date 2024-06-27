@@ -6,16 +6,18 @@ import de.dhbwka.tippspiel.model.Spiel;
 import de.dhbwka.tippspiel.repositories.BenutzerpunkteRepository;
 import de.dhbwka.tippspiel.repositories.BenutzertippRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class TippVerarbeitungsService {
 
     @Autowired
-    BenutzerpunkteRepository bpRepo;
+    private BenutzerpunkteRepository bpRepo;
 
     @Autowired
-    BenutzertippRepository btRepo;
+    private BenutzertippRepository btRepo;
 
     public int berechnePunktzahlFuerSpieltipp(int toreHeim, int toreAuswaerts, Spiel spiel) {
 
@@ -54,7 +56,7 @@ public class TippVerarbeitungsService {
         bt.setMatchID((long) matchID);
         bt.setUsername(username);
         bt.setHeimvereintore((long) toreHeim);
-        bt.setHeimvereintore((long) toreAuswaerts);
+        bt.setAuswaertsvereintore((long) toreAuswaerts);
         btRepo.save(bt);
     }
 
@@ -66,19 +68,28 @@ public class TippVerarbeitungsService {
     }
 
     public Benutzertipp getBenutzertippVonUsernameBeiMatchID(String username, int matchID) {
-        Benutzertipp bt = btRepo.findByUsernameAndMatchID(username, (long) matchID);
-        if (bt != null) {
-            return bt;
+        try {
+            Benutzertipp bt = btRepo.findByUsernameAndMatchID(username, (long) matchID);
+            if (bt != null) {
+                return bt;
+            }
+            return null;
+        } catch (Exception e) {
+            return null;
         }
-        return null;
+
     }
 
     public Benutzerpunkte getBenutzerpunkteVonUsername(String username) {
+        try {
         Benutzerpunkte bp = bpRepo.findByUsername(username);
         if (bp != null) {
             return bp;
         }
         return null;
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }
