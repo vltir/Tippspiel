@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/results.css}">
+    <link rel="stylesheet" th:href="@{/tippseite.css}">
     <title>Document</title>
 </head>
 <body>
@@ -27,29 +27,51 @@
             <option value="7">7. Spieltag</option>
         </select>
     </div>
-
     <div th:each="spiel : ${spiele}">
+        <span th:text="${spiel.getDatum()}"> </span>
         <form method="post" th:action="@{/em2024/results/tipp}" >
             <div id="window">
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
 
         <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
-            <span th:if="${spiel.getMatchIsFinished()}"><span class="score_left" th:text="${spiel.getHeimVereinTore()}"></span></span>
-              <span th:unless="${spiel.getMatchIsFinished()}">
-                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore"></span></span>
-            <span class="divide">:</span>
-              <span th:if="${spiel.getMatchIsFinished()}">
-                <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}">2</span>
+
+            <span th:if="${spiel.getMatchIsFinished()}">
+                <span class="score_left" th:text="${spiel.getHeimVereinTore()}">
+                </span>
             </span>
               <span th:unless="${spiel.getMatchIsFinished()}">
-                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore"></span>
+                  <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
+                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore" th:placeholder="${tippListe.get(spiel.getMatchID()).getHeimvereintore()}"></span>
+                      </span>
+                  <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
+                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore"></span>
+                      </span>
               </span>
+
+
+            <span class="divide">:</span>
+
+
+
+              <span th:if="${spiel.getMatchIsFinished()}">
+                <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}"></span>
+            </span>
+              <span th:unless="${spiel.getMatchIsFinished()}">
+                  <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
+                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore" th:placeholder="${tippListe.get(spiel.getMatchID()).getAuswaertsvereintore()}"></span>
+                      </span>
+                  <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
+                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore"></span>
+                      </span>
+                  </span>
               <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
           </span>
         <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
         <input type="hidden" name="matchID" th:value="${spiel.getMatchID()}">
-        <input type="submit" class="submit">
+                <span th:unless="${spiel.getMatchIsFinished()}">
+                    <input type="submit" class="submit">
+                </span>
     </div>
         </form>
     </div>

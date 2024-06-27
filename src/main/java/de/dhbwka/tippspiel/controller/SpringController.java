@@ -174,6 +174,7 @@ public class SpringController {
                     benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
                 }
             }
+
             model.addAttribute("tippListe", benutzertipps);
 
             return new ModelAndView("tippseite.html");

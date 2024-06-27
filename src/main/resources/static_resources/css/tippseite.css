@@ -85,8 +85,8 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 .submit{
-    position: relative;
-    top: 1rem;
+    /*position: relative;
+    top: 1rem;*/
     background: none;
     border-style: solid;
     border-color:white ;
