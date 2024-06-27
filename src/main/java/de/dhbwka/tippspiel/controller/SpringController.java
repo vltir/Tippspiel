@@ -261,6 +261,10 @@ public class SpringController {
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
             model.addAttribute("spiele", spiele);
 
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
             return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -270,8 +274,14 @@ public class SpringController {
     public ModelAndView showResultPage1(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
         model.addAttribute("authToken", authToken);
+
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(1);
         model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
         return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -281,8 +291,14 @@ public class SpringController {
     public ModelAndView showResultPage2(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
         model.addAttribute("authToken", authToken);
+
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(2);
         model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
         return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -292,8 +308,14 @@ public class SpringController {
     public ModelAndView showResultPage3(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
         model.addAttribute("authToken", authToken);
+
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(3);
         model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
         return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -303,8 +325,14 @@ public class SpringController {
     public ModelAndView showResultPage4(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
         model.addAttribute("authToken", authToken);
+
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(4);
         model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
         return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -314,8 +342,14 @@ public class SpringController {
     public ModelAndView showResultPage5(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
         model.addAttribute("authToken", authToken);
+
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(5);
         model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
         return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -325,8 +359,14 @@ public class SpringController {
     public ModelAndView showResultPage6(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
         model.addAttribute("authToken", authToken);
+
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(6);
         model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
         return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -336,8 +376,14 @@ public class SpringController {
     public ModelAndView showResultPage7(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
         model.addAttribute("authToken", authToken);
+
         List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(7);
         model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
         return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
