@@ -13,11 +13,13 @@ import java.util.List;
 @Service
 public class TippVerarbeitungsService {
 
-    @Autowired
     private BenutzerpunkteRepository bpRepo;
-
-    @Autowired
     private BenutzertippRepository btRepo;
+
+    public TippVerarbeitungsService(BenutzerpunkteRepository bpRepo, BenutzertippRepository btRepo) {
+        this.bpRepo = bpRepo;
+        this.btRepo = btRepo;
+    }
 
     public int berechnePunktzahlFuerSpieltipp(int toreHeim, int toreAuswaerts, Spiel spiel) {
 
