@@ -1,3 +1,8 @@
+.site{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+}
 #dropdown{
     position: relative;
     top: 1rem;
@@ -15,19 +20,19 @@ ul {
     backdrop-filter: blur(10px);
     border-width: 1px;
   }
-  
+
   li {
     float: left;
   }
-  
+
   li a {
-    display: relative;
+    display: block;
     color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
-  
+
   /* Change the link color to #111 (black) on hover */
   li a:hover {
     background: rgba(41, 205, 255, 0.24);
@@ -39,12 +44,11 @@ ul {
       border-radius: 50%;
   }
   #window{
-      display: relative;
+      display: flex;
       justify-content: space-around;
       align-items: center;
       margin-top: 2rem;
       border-style: solid;
-      border-color:white;
       width: 36rem;
       height: 9rem;
   }

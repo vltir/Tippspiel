@@ -82,11 +82,11 @@ public class TippVerarbeitungsService {
 
     public Benutzerpunkte getBenutzerpunkteVonUsername(String username) {
         try {
-        Benutzerpunkte bp = bpRepo.findByUsername(username);
-        if (bp != null) {
-            return bp;
-        }
-        return null;
+            Benutzerpunkte bp = bpRepo.findByUsername(username);
+            if (bp != null) {
+                return bp;
+            }
+            return null;
         } catch (Exception e) {
             return null;
         }
