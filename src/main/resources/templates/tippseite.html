@@ -42,10 +42,10 @@
             </span>
               <span th:unless="${spiel.getMatchIsFinished()}">
                   <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
-                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore" th:placeholder="${tippListe.get(spiel.getMatchID()).getHeimvereintore()}"></span>
+                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore" th:placeholder="${tippListe.get(spiel.getMatchID()).getHeimvereintore()}" required></span>
                       </span>
                   <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
-                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore"></span>
+                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore" required></span>
                       </span>
               </span>
 
@@ -59,10 +59,10 @@
             </span>
               <span th:unless="${spiel.getMatchIsFinished()}">
                   <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
-                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore" th:placeholder="${tippListe.get(spiel.getMatchID()).getAuswaertsvereintore()}"></span>
+                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore" th:placeholder="${tippListe.get(spiel.getMatchID()).getAuswaertsvereintore()}" required></span>
                       </span>
                   <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
-                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore"></span>
+                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore" required></span>
                       </span>
                   </span>
               <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
