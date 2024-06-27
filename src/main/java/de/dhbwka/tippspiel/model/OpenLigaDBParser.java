@@ -162,6 +162,10 @@ public class OpenLigaDBParser {
                 spiel.setMatchID((Integer) data.get("matchID"));
                 spiel.setSpielZeit((String) data.get("matchDateTime"));
                 spiel.setLiga((String) data.get("leagueName"));
+                String datum = (String) data.get("matchDateTime");
+                String datumstripped = datum.substring(0, 9);
+                spiel.setDatum(datumstripped);
+
 
                 // Parse the group
                 Map<String, Object> groupData = (Map<String, Object>) data.get("group");
