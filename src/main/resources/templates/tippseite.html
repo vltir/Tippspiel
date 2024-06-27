@@ -8,11 +8,9 @@
     <title>Document</title>
 </head>
 <body>
-<div class="cursor"></div>
-<div class="outline"></div>
 <ul>
     <li><a href="http://localhost:8080/em2024/test">Home</a></li>
-    <li><a href="http://localhost:8080/em2024/tipps">Tipps</a></li>
+    <li><a href="http://localhost:8080/em2024/tipps/current">Tipps</a></li>
     <li><a href="http://localhost:8080/em2024/results/current">Results</a></li>
     <li><a href="http://localhost:8080/em2024/about">About</a></li>
 </ul>
@@ -29,29 +27,33 @@
             <option value="7">7. Spieltag</option>
         </select>
     </div>
-    <form method="post" action="/">
-    <div id="window" th:each="spiel : ${spiele}">
 
+    <div th:each="spiel : ${spiele}">
+        <form method="post" th:action="@{/em2024/results/tipp}" >
+            <div id="window">
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
 
         <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
             <span th:if="${spiel.getMatchIsFinished()}"><span class="score_left" th:text="${spiel.getHeimVereinTore()}"></span></span>
               <span th:unless="${spiel.getMatchIsFinished()}">
-                  <span class="score_left"><input type="number" style="width: 1rem"></span></span>
+                  <span class="score_left"><input type="number" style="width: 1rem" name="HeimVereinTore"></span></span>
             <span class="divide">:</span>
               <span th:if="${spiel.getMatchIsFinished()}">
                 <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}">2</span>
             </span>
               <span th:unless="${spiel.getMatchIsFinished()}">
-                  <span class="score_right"><input type="number" style="width: 1rem"></span>
+                  <span class="score_right"><input type="number" style="width: 1rem" name="AuswaertsVereinTore"></span>
               </span>
               <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
           </span>
         <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
-    </div>
+        <input type="hidden" name="matchID" th:value="${spiel.getMatchID()}">
         <input type="submit" class="submit">
-    </form>
+    </div>
+        </form>
+    </div>
+
     <script type="text/javascript" th:src="@{/login1}"></script>
     <script type="text/javascript" th:src="@{/tippseite.js}"></script>
 </div>

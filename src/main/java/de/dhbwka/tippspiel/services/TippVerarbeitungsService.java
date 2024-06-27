@@ -61,12 +61,19 @@ public class TippVerarbeitungsService {
         bt.setAuswaertsvereintore((long) toreAuswaerts);
         btRepo.save(bt);
     }
+    public void loescheTippVonBenutzerBeiMatch(String username, int matchID) {
+        btRepo.deleteByUsernameAndMatchID(username, (long) matchID);
+    }
 
     public void speicherePunktzahlFuerBenutzer(String username, int punktzahl) {
         Benutzerpunkte bp = new Benutzerpunkte();
         bp.setPunktzahl((long) punktzahl);
         bp.setUsername(username);
         bpRepo.save(bp);
+    }
+
+    public void loeschePunktzahlFuerBenutzer(String username) {
+        bpRepo.deleteByUsername(username);
     }
 
     public Benutzertipp getBenutzertippVonUsernameBeiMatchID(String username, int matchID) {

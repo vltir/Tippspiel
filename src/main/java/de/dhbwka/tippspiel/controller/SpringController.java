@@ -66,7 +66,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -90,7 +92,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -114,7 +118,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -138,7 +144,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -162,7 +170,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -186,7 +196,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -210,7 +222,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -234,7 +248,9 @@ public class SpringController {
 
             Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
             for (Spiel spiel : spiele) {
-                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) != null) {
+                    benutzertipps.put(spiel.getMatchID(), tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+                }
             }
             model.addAttribute("tippListe", benutzertipps);
 
@@ -255,11 +271,23 @@ public class SpringController {
 
             Spiel spiel = tippService.getSpielVonMatchID(matchID, spiele);
             String username = jwtUtils.getUsernameFromJwtToken(authToken);
-            tippService.speichereTippVonBenutzerBeiMatch(username, heimvereintore, auswaertsvereintore, matchID);
+
+            if(tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()) == null) {
+                tippService.speichereTippVonBenutzerBeiMatch(username, heimvereintore, auswaertsvereintore, matchID);
+            } else {
+                tippService.loescheTippVonBenutzerBeiMatch(username, matchID);
+                tippService.speichereTippVonBenutzerBeiMatch(username, heimvereintore, auswaertsvereintore, matchID);
+            }
+
 
             if (spiel.getMatchIsFinished()) {
                 int punktzahl = tippService.berechnePunktzahlFuerSpieltipp(heimvereintore, auswaertsvereintore, spiel);
-                tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
+                if (tippService.getBenutzerpunkteVonUsername(username)==null) {
+                    tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
+                } else {
+                    tippService.loeschePunktzahlFuerBenutzer(username);
+                    tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
+                }
             }
 
             return new ModelAndView("tippseite.html");
