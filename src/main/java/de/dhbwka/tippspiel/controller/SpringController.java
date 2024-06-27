@@ -49,6 +49,51 @@ public class SpringController {
 
     private OpenLigaDBParser parser = new OpenLigaDBParser();
 
+    @GetMapping("/")
+    public ModelAndView showHomePage(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            TippVerarbeitungsService tippService = new TippVerarbeitungsService(this.bpRepo, this.btRepo);
+            model.addAttribute("authToken", authToken);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            model.addAttribute("username", username);
+
+            List<Spiel> spiele = parser.parseAlleSpiele();
+            List<Benutzertipp> tipps = tippService.getAlleBenutzertippsVonUsername(username);
+            int punktzahl = 0;
+
+            for (Benutzertipp tipp : tipps) {
+                for (Spiel spiel : spiele) {
+                    if (spiel.getGroup() != null && spiel.getMatchID() == tipp.getMatchID()) {
+                        punktzahl += tippService.berechnePunktzahlFuerSpieltipp(tipp.getHeimvereintore(), tipp.getAuswaertsvereintore(), spiel);
+                    }
+                }
+
+            }
+            if (tippService.getBenutzerpunkteVonUsername(username)==null) {
+                tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
+            } else {
+                tippService.loeschePunktzahlFuerBenutzer(username);
+                tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
+            }
+            model.addAttribute("punktzahl", punktzahl);
+
+            return new ModelAndView("home.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+
+    @GetMapping("/impressum")
+    public ModelAndView showImpressumPage(@CookieValue("authToken") String authToken, Model model) {
+        if (jwtUtils.validateJwtToken(authToken)) {
+            model.addAttribute("authToken", authToken);
+            return new ModelAndView("impressum.html");
+        } else {
+            return new ModelAndView("redirect:/api/auth/signin");
+        }
+    }
+
 
     @GetMapping("/tipps/current")
     public ModelAndView showTippsPageCurrent(@CookieValue("authToken") String authToken, Model model) {
@@ -278,17 +323,6 @@ public class SpringController {
             } else {
                 tippService.loescheTippVonBenutzerBeiMatch(username, matchID);
                 tippService.speichereTippVonBenutzerBeiMatch(username, heimvereintore, auswaertsvereintore, matchID);
-            }
-
-
-            if (spiel.getMatchIsFinished()) {
-                int punktzahl = tippService.berechnePunktzahlFuerSpieltipp(heimvereintore, auswaertsvereintore, spiel);
-                if (tippService.getBenutzerpunkteVonUsername(username)==null) {
-                    tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
-                } else {
-                    tippService.loeschePunktzahlFuerBenutzer(username);
-                    tippService.speicherePunktzahlFuerBenutzer(username, punktzahl);
-                }
             }
 
             return new ModelAndView("tippseite.html");
