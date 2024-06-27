@@ -22,25 +22,27 @@ public class TippVerarbeitungsService {
     }
 
     public int berechnePunktzahlFuerSpieltipp(long toreHeim, long toreAuswaerts, Spiel spiel) {
-
-        int differenzReal = spiel.getHeimVereinTore() - spiel.getAuswaertsVereinTore();
-        long differenzTipp = toreHeim - toreAuswaerts;
         int punkte = 0;
-        if (differenzReal > 0 && differenzTipp > 0) {
-            punkte++;
-        } else if (differenzReal == 0 && differenzTipp == 0) {
-            punkte++;
-        } else if (differenzReal < 0 && differenzTipp < 0) {
-            punkte++;
-        } else {
-            punkte = 0;
+        if(spiel.getMatchIsFinished()) {
+            int differenzReal = spiel.getHeimVereinTore() - spiel.getAuswaertsVereinTore();
+            long differenzTipp = toreHeim - toreAuswaerts;
+            if (differenzReal > 0 && differenzTipp > 0) {
+                punkte++;
+            } else if (differenzReal == 0 && differenzTipp == 0) {
+                punkte++;
+            } else if (differenzReal < 0 && differenzTipp < 0) {
+                punkte++;
+            } else {
+                punkte = 0;
+            }
+
+            if (toreHeim == spiel.getHeimVereinTore() && toreAuswaerts == spiel.getAuswaertsVereinTore()) {
+                punkte += 3;
+            } else {
+                punkte++;
+            }
         }
 
-        if (toreHeim == spiel.getHeimVereinTore() && toreAuswaerts == spiel.getAuswaertsVereinTore()) {
-            punkte += 3;
-        } else {
-            punkte++;
-        }
         return punkte;
     }
 
