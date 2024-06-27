@@ -21,10 +21,10 @@ public class TippVerarbeitungsService {
         this.btRepo = btRepo;
     }
 
-    public int berechnePunktzahlFuerSpieltipp(int toreHeim, int toreAuswaerts, Spiel spiel) {
+    public int berechnePunktzahlFuerSpieltipp(long toreHeim, long toreAuswaerts, Spiel spiel) {
 
         int differenzReal = spiel.getHeimVereinTore() - spiel.getAuswaertsVereinTore();
-        int differenzTipp = toreHeim - toreAuswaerts;
+        long differenzTipp = toreHeim - toreAuswaerts;
         int punkte = 0;
         if (differenzReal > 0 && differenzTipp > 0) {
             punkte++;
@@ -87,6 +87,11 @@ public class TippVerarbeitungsService {
             return null;
         }
 
+    }
+
+    public List<Benutzertipp> getAlleBenutzertippsVonUsername(String username) {
+        List<Benutzertipp> tipps = btRepo.findByUsername(username);
+        return tipps;
     }
 
     public Benutzerpunkte getBenutzerpunkteVonUsername(String username) {

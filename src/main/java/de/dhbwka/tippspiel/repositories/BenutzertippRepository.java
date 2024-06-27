@@ -10,12 +10,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 @Repository
 public interface BenutzertippRepository extends JpaRepository<Benutzertipp, Long> {
 
     @Query("SELECT bt FROM Benutzertipp bt WHERE bt.username = :username")
-    Optional<Benutzertipp> findByUsername(@Param("username") String username);
+    List<Benutzertipp> findByUsername(@Param("username") String username);
 
     @Query("SELECT bt FROM Benutzertipp bt WHERE bt.username = :username AND bt.matchID = :matchID")
     Benutzertipp findByUsernameAndMatchID(@Param("username") String username, @Param("matchID") Long matchID);
