@@ -14,7 +14,8 @@
     <li><a href="http://localhost:8080/em2024/tipps/current">Tipps</a></li>
     <li><a href="http://localhost:8080/em2024/results/current">Results</a></li>
     <li><a href="http://localhost:8080/em2024/impressum">About</a></li>
-</ul>
-    <h1>Hallo <span th:text="${authToken}"></span></h1>
+    <li><a href="http://localhost:8080/api/auth/signin">Log out</a></li></ul>
+    <h1>Hallo <span th:text="${username}"></span></h1>
+    <p th:text="${punktzahl}"></p>
 </body>
 </html>
