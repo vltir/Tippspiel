@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+<div class="cursor"></div>
 <ul>
     <li><a href="http://localhost:8080/em2024/">Home</a></li>
     <li><a href="http://localhost:8080/em2024/tipps/current">Tipps</a></li>
@@ -29,16 +30,23 @@
         </select>
     </div>
     <div th:each="spiel : ${spiele}">
-        <span th:text="${spiel.getDatum()}"> </span>
         <form method="post" th:action="@{/em2024/results/tipp}" >
             <div id="window">
+                <span th:text="${spiel.getDatum()}" class="datum"> </span>
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
 
         <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
 <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
             <span th:if="${spiel.getMatchIsFinished()}">
-                <span class="score_left" th:text="${spiel.getHeimVereinTore()}"></span>
+
+                <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
+                   <span th:placeholder="${tippListe.get(spiel.getMatchID()).getHeimvereintore()}"></span>
+                </span>
+                <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
+                    <span class="score_left">-</span>
+                </span>
+
             </span>
             <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
 
@@ -56,8 +64,15 @@
 
 
             <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
-              <span th:if="${spiel.getMatchIsFinished()}">
-                <span class="score_right" th:text="${spiel.getAuswaertsVereinTore()}"></span>
+               <span th:if="${spiel.getMatchIsFinished()}">
+
+                <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
+                   <span th:placeholder="${tippListe.get(spiel.getMatchID()).getAuswaertsvereintore()}"></span>
+                </span>
+                <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
+                    <span class="score_left">-</span>
+                </span>
+
             </span>
             <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
 
@@ -83,6 +98,21 @@
 
     <script type="text/javascript" th:src="@{/login1}"></script>
     <script type="text/javascript" th:src="@{/tippseite.js}"></script>
+
+</div>
+<div class="count-particles">
+    <span class="js-count-particles"></span>
+</div>
+
+<!-- particles.js container -->
+<div id="particles-js"></div>
+<div id="particles">
+    <script th:src="@{/login2.js}" src="../static_resources/js/bsp.js"></script>
+    <script th:src="@{/login3.js}" src="../static_resources/js/bsp.js"></script>
+
+    <!-- stats.js -->
+    <script th:src="@{/login4.js}" src="../static_resources/js/bsp.js"></script>
+
 </div>
 </body>
 </html>
