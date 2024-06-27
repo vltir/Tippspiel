@@ -11,6 +11,6 @@ import java.util.Optional;
 public interface BenutzerpunkteRepository extends JpaRepository<Benutzerpunkte, String>  {
 
     @Query("SELECT bp FROM Benutzerpunkte bp WHERE bp.username = :username")
-    Optional<Benutzerpunkte> findByUsername(@Param("username") String username);
+    Benutzerpunkte findByUsername(@Param("username") String username);
 
 }

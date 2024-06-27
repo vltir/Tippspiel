@@ -1,5 +1,7 @@
 package de.dhbwka.tippspiel.controller;
 
+import de.dhbwka.tippspiel.entities.Benutzerpunkte;
+import de.dhbwka.tippspiel.entities.Benutzertipp;
 import de.dhbwka.tippspiel.model.Group;
 import de.dhbwka.tippspiel.model.OpenLigaDBParser;
 import de.dhbwka.tippspiel.model.Spiel;
@@ -14,7 +16,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/em2024")
@@ -42,9 +47,21 @@ public class SpringController {
     public ModelAndView showTippsPageCurrent(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             Group group = parser.parseAktuelleGroup();
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -54,8 +71,20 @@ public class SpringController {
     public ModelAndView showTippsPage1(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(1);
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -65,8 +94,20 @@ public class SpringController {
     public ModelAndView showTippsPage2(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(2);
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -76,8 +117,20 @@ public class SpringController {
     public ModelAndView showTippsPage3(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(3);
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -87,8 +140,20 @@ public class SpringController {
     public ModelAndView showTippsPage4(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(4);
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -98,8 +163,20 @@ public class SpringController {
     public ModelAndView showTippsPage5(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(5);
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -109,8 +186,20 @@ public class SpringController {
     public ModelAndView showTippsPage6(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(6);
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -120,8 +209,20 @@ public class SpringController {
     public ModelAndView showTippsPage7(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(7);
             model.addAttribute("spiele", spiele);
+
+            String username = jwtUtils.getUsernameFromJwtToken(authToken);
+            Benutzerpunkte bp = tippService.getBenutzerpunkteVonUsername(username);
+            model.addAttribute("benutzerpunkte", bp);
+
+            Map<Integer, Benutzertipp> benutzertipps = new HashMap<>();
+            for (Spiel spiel : spiele) {
+                benutzertipps.put(spiel.getMatchID() ,tippService.getBenutzertippVonUsernameBeiMatchID(username, spiel.getMatchID()));
+            }
+            model.addAttribute("tippListe", benutzertipps);
+
             return new ModelAndView("tippseite.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
@@ -129,9 +230,10 @@ public class SpringController {
     }
 
     @PostMapping(value= "/results/tipp", produces = "application/json")
-    public ModelAndView authenticateUser(@RequestParam("matchID") int matchID, @RequestParam("HeimVereinTore") Integer heimvereintore, @RequestParam("AuswaertsVereinTore") Integer auswaertsvereintore, @CookieValue("authToken") String authToken, Model model) {
+    public ModelAndView sendeTipp(@RequestParam("matchID") int matchID, @RequestParam("HeimVereinTore") Integer heimvereintore, @RequestParam("AuswaertsVereinTore") Integer auswaertsvereintore, @CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             List<Spiel> spiele = parser.parseAlleSpiele();
             model.addAttribute("spiele", spiele);
 
@@ -154,9 +256,11 @@ public class SpringController {
     public ModelAndView showResultPageCurrent(@CookieValue("authToken") String authToken, Model model) {
         if (jwtUtils.validateJwtToken(authToken)) {
             model.addAttribute("authToken", authToken);
+
             Group group = parser.parseAktuelleGroup();
             List<Spiel> spiele = parser.parseSpieleFuerGruppenspieltag(group.getGroupOrderID());
             model.addAttribute("spiele", spiele);
+
             return new ModelAndView("results.html");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");

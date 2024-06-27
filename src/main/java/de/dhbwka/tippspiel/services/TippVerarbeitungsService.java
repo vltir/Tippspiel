@@ -21,26 +21,23 @@ public class TippVerarbeitungsService {
 
         int differenzReal = spiel.getHeimVereinTore() - spiel.getAuswaertsVereinTore();
         int differenzTipp = toreHeim - toreAuswaerts;
-
+        int punkte = 0;
         if (differenzReal > 0 && differenzTipp > 0) {
-            //
+            punkte++;
         } else if (differenzReal == 0 && differenzTipp == 0) {
-            //
+            punkte++;
         } else if (differenzReal < 0 && differenzTipp < 0) {
-            //
+            punkte++;
         } else {
-            return 0;
-        }
-
-        if (differenzReal != differenzTipp) {
-            return 1;
+            punkte = 0;
         }
 
         if (toreHeim == spiel.getHeimVereinTore() && toreAuswaerts == spiel.getAuswaertsVereinTore()) {
-            return 4;
+            punkte += 3;
         } else {
-            return 2;
+            punkte++;
         }
+        return punkte;
     }
 
     public Spiel getSpielVonMatchID(int matchID, List<Spiel> spiele) {
@@ -66,6 +63,22 @@ public class TippVerarbeitungsService {
         bp.setPunktzahl((long) punktzahl);
         bp.setUsername(username);
         bpRepo.save(bp);
+    }
+
+    public Benutzertipp getBenutzertippVonUsernameBeiMatchID(String username, int matchID) {
+        Benutzertipp bt = btRepo.findByUsernameAndMatchID(username, (long) matchID);
+        if (bt != null) {
+            return bt;
+        }
+        return null;
+    }
+
+    public Benutzerpunkte getBenutzerpunkteVonUsername(String username) {
+        Benutzerpunkte bp = bpRepo.findByUsername(username);
+        if (bp != null) {
+            return bp;
+        }
+        return null;
     }
 
 }
