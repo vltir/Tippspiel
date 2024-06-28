@@ -325,7 +325,7 @@ public class SpringController {
                 tippService.speichereTippVonBenutzerBeiMatch(username, heimvereintore, auswaertsvereintore, matchID);
             }
 
-            return new ModelAndView("tippseite.html");
+            return new ModelAndView("redirect:/em2024/tipps/current");
         } else {
             return new ModelAndView("redirect:/api/auth/signin");
         }
