@@ -23,16 +23,15 @@ html {
 
 #dropdown {
     top: 1rem;
-    background: none;
-    border-style: solid;
     border-radius: 5px;
     outline: none;
-    border-color: white;
-    border-width: 1px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.04);
     color: white;
     transition-duration: 1s;
     margin-top:2rem;
     margin-bottom:2rem;
+
 }
 
 option {
