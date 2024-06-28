@@ -30,7 +30,7 @@
         </select>
     </div>
     <div th:each="spiel : ${spiele}">
-        <form method="post" th:action="@{/em2024/results/current}" >
+        <form method="post" th:action="@{/em2024/results/tipp}" >
             <div id="window">
                 <span th:text="${spiel.getDatum()}" class="datum"> </span>
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
