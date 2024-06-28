@@ -30,25 +30,25 @@
         </select>
     </div>
     <div th:each="spiel : ${spiele}">
-        <form method="post" th:action="@{/em2024/results/tipp}" >
+        <form method="post" th:action="@{/em2024/results/current}" >
             <div id="window">
                 <span th:text="${spiel.getDatum()}" class="datum"> </span>
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
 
         <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
-<!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+<!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
             <span th:if="${spiel.getMatchIsFinished()}">
 
                 <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
-                   <span th:placeholder="${tippListe.get(spiel.getMatchID()).getHeimvereintore()}"></span>
+                   <span th:text="${tippListe.get(spiel.getMatchID()).getHeimvereintore()}"></span>
                 </span>
                 <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
                     <span class="score_left">-</span>
                 </span>
 
             </span>
-            <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+             <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
 
               <span th:unless="${spiel.getMatchIsFinished()}">
                   <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
@@ -63,18 +63,18 @@
             <span class="divide">:</span>
 
 
-            <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+            <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss  -->
                <span th:if="${spiel.getMatchIsFinished()}">
 
                 <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
-                   <span th:placeholder="${tippListe.get(spiel.getMatchID()).getAuswaertsvereintore()}"></span>
+                   <span th:text="${tippListe.get(spiel.getMatchID()).getAuswaertsvereintore()}"></span>
                 </span>
                 <span th:unless="${tippListe.get(spiel.getMatchID())!=null}">
                     <span class="score_left">-</span>
                 </span>
 
             </span>
-            <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
+            <!--ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
 
 
               <span th:unless="${spiel.getMatchIsFinished()}">
