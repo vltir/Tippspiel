@@ -90,7 +90,7 @@ public class AuthController {
                 .collect(Collectors.toList());
         // Setzen des Cookies mit dem JWT-Token
         Cookie cookie = new Cookie("authToken", jwt);
-        cookie.setHttpOnly(true);
+        cookie.setHttpOnly(false);
         cookie.setSecure(false); // false, damit es für http in der lokalen Entwicklungsumgeung gesendet werden kann.
         cookie.setPath("/");
         cookie.setMaxAge(7 * 24 * 60 * 60); // Gültigkeit 1 Woche

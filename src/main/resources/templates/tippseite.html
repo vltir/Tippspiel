@@ -14,7 +14,7 @@
     <li><a href="http://localhost:8080/em2024/tipps/current">Tipps</a></li>
     <li><a href="http://localhost:8080/em2024/results/current">Results</a></li>
     <li><a href="http://localhost:8080/em2024/impressum">About</a></li>
-    <li><a href="http://localhost:8080/api/auth/signin">Log out</a></li>
+    <li><a href="http://localhost:8080/api/auth/signin" onclick="deleteAuthToken()">Log out</a></li>
 </ul>
 <div class="site">
     <div class="dropdown">
@@ -30,7 +30,7 @@
         </select>
     </div>
     <div th:each="spiel : ${spiele}">
-        <form method="post" th:action="@{/em2024/results/tipp}" >
+        <form id="tippForm"><!--method="post" th:action="@{/em2024/results/tipp}"-->
             <div id="window">
                 <span th:text="${spiel.getDatum()}" class="datum"> </span>
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>

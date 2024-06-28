@@ -11,3 +11,7 @@ cursor.style.top = `${y}px`;
 
 
 });
+
+function deleteAuthToken(){
+    document.cookie="authToken=;path=/;";
+}

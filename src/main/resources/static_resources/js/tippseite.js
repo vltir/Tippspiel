@@ -23,3 +23,7 @@ document.querySelector(".submit").addEventListener('submit',function(event){
 
 
 });
+
+function deleteAuthToken(){
+  document.cookie="authToken=;path=/;";
+}
