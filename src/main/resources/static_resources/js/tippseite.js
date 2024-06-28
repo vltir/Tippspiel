@@ -1,4 +1,4 @@
-const cursor = document.querySelector(".cursor");
+const cursor = document.querySelector(".soccer-ball");
 
 const form = document.querySelector("form");
 
