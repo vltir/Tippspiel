@@ -253,6 +253,8 @@ ul:hover{
         background: url('https://raw.githubusercontent.com/Yousuke777/texture/main/soccer-ball-02.png') repeat;
         background-size: 200%;
         animation: rotate-anim 2s linear infinite;
+
+	    box-shadow: inset 5px 5px 12px -4px #000000;
     }
 
     /*.soccer-ball:after {
