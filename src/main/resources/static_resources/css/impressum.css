@@ -99,3 +99,57 @@ a{
      left: 0;
      z-index: -1;
  }
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+    }
+    .site {
+            justify-content: center;
+            align-items: center;
+        }
+
+    #window {
+            flex-direction: column nowrap;
+            width: 100%; /* oder eine andere geeignete Breite */
+            height: auto;
+            padding: 1rem;
+        }
+
+    img {
+        height: 3rem;
+        width: 3rem;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    li a {
+        padding: 10px;
+    }
+
+    .submit, input {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo_left, .logo_right {
+        width: 3rem;
+        height: 3rem;
+    }
+}

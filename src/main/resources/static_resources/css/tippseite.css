@@ -4,7 +4,6 @@ html {
     background-attachment: fixed;
     cursor: none;
     background-size: cover;
-    background-repeat: no-repeat;
     background-position: 50% 50%;
 }
 
@@ -30,8 +29,7 @@ html {
     color: white;
     transition-duration: 1s;
     margin-top:2rem;
-    margin-bottom:2rem;
-
+    margin-bottom:1rem;
 }
 
 option {
@@ -81,9 +79,9 @@ img {
 
 #window {
     display: flex;
-    justify-content: space-around;
+    flex-flow:row nowrap;
+    justify-content: center;
     align-items: center;
-    margin-top: 2rem;
     border-radius:1rem;
     border: 1px solid rgba(255, 255, 255, 0.3);
     background: rgba(255, 255, 255, 0.04);
@@ -92,10 +90,12 @@ img {
     width: 36rem;
     height: 9rem;
     backdrop-filter: blur(5px);
-    margin: 0 auto;  /* Center the element */
+    margin-top: 1rem;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.logo_left {
+.logo_left,.logo_right  {
     background: none;
     border-style: solid;
     outline: none;
@@ -106,30 +106,15 @@ img {
     border-radius: 50%;
     width: 4rem;
     height: 4rem;
+    margin-left:auto;
+    margin-right:auto;
 }
 
-.logo_left:hover {
+.logo_left:hover,.logo_right:hover {
     transition: 1s;
     box-shadow: 0px 0px 14px 6px #FFFFFF;
 }
 
-.logo_right {
-    background: none;
-    border-style: solid;
-    outline: none;
-    border-color: white;
-    border-width: 5px;
-    color: white;
-    transition-duration: 1s;
-    border-radius: 50%;
-    width: 4rem;
-    height: 4rem;
-}
-
-.logo_right:hover {
-    transition: 1s;
-    box-shadow: 0px 0px 14px 6px #FFFFFF;
-}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -168,37 +153,6 @@ input:focus {
     box-shadow: 0px 0px 14px 6px #FFFFFF;
 }
 
-.cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 5;
-    pointer-events: none;
-    width: 10px;
-    height: 10px;
-    background-color: white;
-    border-width: 5;
-    border-style: none;
-}
-
-.outline {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: translate(-50%, -50%);
-    border-radius: 50%;
-    border-style: solid;
-    z-index: 3;
-    pointer-events: none;
-    width: 100px;
-    height: 100px;
-    border-width: 1;
-    border-style: none;
-    backdrop-filter: blur(4px) saturate(10%) invert(100%);
-}
-
 #particles-js {
     position: fixed;
     width: 100%;
@@ -218,6 +172,7 @@ input {
     color: white;
     transition-duration: 1s;
     color: white;
+    text-align:center
 }
 
 input::placeholder {
@@ -238,7 +193,8 @@ select{
 ul:hover{
     transition: 1s;
     box-shadow: 0px 0px 14px 6px #FFFFFF;
-}.soccer-ball {
+}
+.soccer-ball {
      position: fixed;
          top: 0;
          left: 0;
@@ -274,3 +230,77 @@ ul:hover{
              background-position: -100% 0;
          }
      }
+h1{
+    color: white;
+}
+.inner{
+display:flex;
+flex-flow:column nowrap;
+justify-content:center;
+align-items:center;
+}
+.inner div{
+margin: 5px;
+}
+.text{
+margin:auto;
+}
+.team_left,.team_right{
+    display:inline-block;
+    width:150px;
+    text-align:center;
+}
+@media (max-width: 768px) {
+    body {
+        padding: 0;
+        margin: 0;
+        font-size: 16px;
+    }
+    .site {
+            justify-content: center;
+            align-items: center;
+        }
+
+    #window {
+            flex-direction: column nowrap;
+            width: 100%; /* oder eine andere geeignete Breite */
+            height: auto;
+            padding: 1rem;
+        }
+
+    img {
+        height: 3rem;
+        width: 3rem;
+    }
+
+    ul {
+        display: flex;
+        flex-direction: column;
+    }
+
+    li {
+        float: none;
+        width: 100%;
+        text-align: center;
+    }
+
+    li a {
+        padding: 10px;
+    }
+
+    .submit, input {
+        width: 100%;
+        margin-top: 0.5rem;
+    }
+
+    .text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo_left, .logo_right {
+        width: 3rem;
+        height: 3rem;
+    }
+}

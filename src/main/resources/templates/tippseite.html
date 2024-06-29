@@ -19,6 +19,7 @@
     <li><a href="http://localhost:8080/api/auth/signin" onclick="deleteAuthToken()">Log out</a></li>
 </ul>
 <div class="site">
+    <h1>Tippseite</h1>
     <div class="dropdown">
         <select id="dropdown"onchange="switchSite(value)" >
             <option value="current" >heute</option>
@@ -34,9 +35,10 @@
     <div th:each="spiel : ${spiele}">
         <form id="tippForm"><!--method="post" th:action="@{/em2024/results/tipp}"-->
             <div id="window">
-                <span th:text="${spiel.getDatum()}" class="datum"> </span>
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
-
+        <div class="inner">
+            <div id="date"><span th:text="${spiel.getDatum()}" class="datum"> </span></div>
+            <div class="noinp">
         <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
 <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
@@ -89,10 +91,14 @@
                   </span>
               <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
           </span>
+        </div>
+            <div id="inp">
+                <input type="submit" class="submit">
+            </div>
+        </div>
         <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
         <input type="hidden" name="matchID" th:value="${spiel.getMatchID()}">
                 <span th:unless="${spiel.getMatchIsFinished()}">
-                    <input type="submit" class="submit">
                 </span>
     </div>
         </form>
