@@ -197,7 +197,7 @@ ul:hover{
 .soccer-ball {
      position: fixed;
          top: 0;
-         left: 0;
+         left: 0px;
          transform: translate(-50%, -50%);
          z-index: 5;
          pointer-events: none;
@@ -265,7 +265,6 @@ margin:auto;
             flex-direction: column nowrap;
             width: 100%; /* oder eine andere geeignete Breite */
             height: auto;
-            padding: 1rem;
         }
 
     img {

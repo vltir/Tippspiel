@@ -8,9 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-<div class="container">
-    <div class="soccer-ball"></div>
-</div>
 <ul>
     <li><a href="http://localhost:8080/em2024/">Home</a></li>
     <li><a href="http://localhost:8080/em2024/tipps/current">Tipps</a></li>
@@ -33,7 +30,8 @@
         </select>
     </div>
     <div th:each="spiel : ${spiele}">
-        <form id="tippForm"><!--method="post" th:action="@{/em2024/results/tipp}"-->
+        <form id="tippForm">
+            <!--method="post" th:action="@{/em2024/results/tipp}"-->
             <div id="window">
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
         <div class="inner">
@@ -101,18 +99,20 @@
                 <span th:unless="${spiel.getMatchIsFinished()}">
                 </span>
     </div>
-        </form>
+            </form>
+        </div>
+        <div class="container">
+            <div class="soccer-ball"></div>
+        </div>
+        <script type="text/javascript" th:src="@{/login1}"></script>
+        <script type="text/javascript" th:src="@{/tippseite.js}"></script>
+
+    </div>
+    <div class="count-particles">
+        <span class="js-count-particles"></span>
     </div>
 
-    <script type="text/javascript" th:src="@{/login1}"></script>
-    <script type="text/javascript" th:src="@{/tippseite.js}"></script>
-
-</div>
-<div class="count-particles">
-    <span class="js-count-particles"></span>
-</div>
-
-<!-- particles.js container -->
+    <!-- particles.js container -->
 <div id="particles-js"></div>
 <div id="particles">
     <script th:src="@{/login2.js}" src="../static_resources/js/bsp.js"></script>

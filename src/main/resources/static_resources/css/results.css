@@ -204,10 +204,9 @@ h1 {
     }
 
     #window {
-        flex-direction: column;
+        flex-direction: row nowrap;
         width: 90%;
         height: auto;
-        padding: 1rem;
     }
 
     img {
