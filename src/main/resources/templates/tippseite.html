@@ -90,9 +90,11 @@
               <span class="team_right" th:text="${spiel.getAuswaertsverein().getVereinsName()}"></span>
           </span>
         </div>
-            <div id="inp">
+            <span th:unless="${spiel.getMatchIsFinished()}">
+                <div id="inp">
                 <input type="submit" class="submit">
             </div>
+                </span>
         </div>
         <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
         <input type="hidden" name="matchID" th:value="${spiel.getMatchID()}">
