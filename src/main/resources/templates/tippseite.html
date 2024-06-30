@@ -1,4 +1,4 @@
-<html lang="en">
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -18,7 +18,7 @@
 <div class="site">
     <h1>Tippseite</h1>
     <div class="dropdown">
-        <select id="dropdown"onchange="switchSite(value)" >
+        <select id="dropdown" onchange="switchSite(value)" >
             <option value="current" >heute</option>
             <option value="1" >1. Spieltag</option>
             <option value="2" >2. Spieltag</option>
@@ -91,9 +91,9 @@
           </span>
         </div>
             <span th:unless="${spiel.getMatchIsFinished()}">
-                <div id="inp">
+                <span id="inp">
                 <input type="submit" class="submit">
-            </div>
+            </span>
                 </span>
         </div>
         <div class="logo_right"><img th:src="${spiel.getAuswaertsverein().getBild()}" alt=""></div>
@@ -106,8 +106,8 @@
         <div class="container">
             <div class="soccer-ball"></div>
         </div>
-        <script type="text/javascript" th:src="@{/login1}"></script>
-        <script type="text/javascript" th:src="@{/tippseite.js}"></script>
+        <script th:src="@{/login1}"></script>
+        <script th:src="@{/tippseite.js}"></script>
 
     </div>
     <div class="count-particles">
@@ -117,11 +117,11 @@
     <!-- particles.js container -->
 <div id="particles-js"></div>
 <div id="particles">
-    <script th:src="@{/login2.js}" src="../static_resources/js/bsp.js"></script>
-    <script th:src="@{/login3.js}" src="../static_resources/js/bsp.js"></script>
+    <script th:src="@{/login2.js}" ></script>
+    <script th:src="@{/login3.js}" ></script>
 
     <!-- stats.js -->
-    <script th:src="@{/login4.js}" src="../static_resources/js/bsp.js"></script>
+    <script th:src="@{/login4.js}" ></script>
 
 </div>
 </body>

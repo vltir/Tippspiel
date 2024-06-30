@@ -209,22 +209,6 @@ ul:hover{
          animation: rotate-anim 2s linear infinite;
           box-shadow: inset 5px 5px 12px -4px #000000;
      }
-
-     /*.soccer-ball:after {
-         content: "";
-         position: absolute;
-         left: 0;
-         right: 0;
-         bottom: -5px;
-         margin: auto;
-         width: 80px;
-         height: 5px;
-         border-radius: 50%;
-         background: #000;
-         filter: blur(5px);
-         z-index: -1;
-     }*/
-
      @keyframes rotate-anim {
          100% {
              background-position: -100% 0;
@@ -263,7 +247,7 @@ margin:auto;
 
     #window {
             flex-direction: column nowrap;
-            width: 100%; /* oder eine andere geeignete Breite */
+            width: 100%;
             height: auto;
         }
 
