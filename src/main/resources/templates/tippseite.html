@@ -30,8 +30,7 @@
         </select>
     </div>
     <div th:each="spiel : ${spiele}">
-        <form id="tippForm">
-            <!--method="post" th:action="@{/em2024/results/tipp}"-->
+        <form id="tippForm" method="post" th:action="@{/em2024/results/tipp}">
             <div id="window">
         <div class="logo_left" ><img th:src="${spiel.getHeimverein().getBild()}" alt=""></div>
         <div class="inner">
@@ -39,7 +38,6 @@
             <div class="noinp">
         <span class="text">
             <span class="team_left" th:text="${spiel.getHeimverein().getVereinsName()}"></span>
-<!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss-->
             <span th:if="${spiel.getMatchIsFinished()}">
 
                 <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
@@ -50,7 +48,6 @@
                 </span>
 
             </span>
-             <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
 
               <span th:unless="${spiel.getMatchIsFinished()}">
                   <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
@@ -65,7 +62,6 @@
             <span class="divide">:</span>
 
 
-            <!-- ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss  -->
                <span th:if="${spiel.getMatchIsFinished()}">
 
                 <span th:if="${tippListe.get(spiel.getMatchID())!=null}">
@@ -76,7 +72,6 @@
                 </span>
 
             </span>
-            <!--ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss -->
 
 
               <span th:unless="${spiel.getMatchIsFinished()}">
@@ -114,13 +109,11 @@
         <span class="js-count-particles"></span>
     </div>
 
-    <!-- particles.js container -->
 <div id="particles-js"></div>
 <div id="particles">
     <script th:src="@{/login2.js}" ></script>
     <script th:src="@{/login3.js}" ></script>
 
-    <!-- stats.js -->
     <script th:src="@{/login4.js}" ></script>
 
 </div>
