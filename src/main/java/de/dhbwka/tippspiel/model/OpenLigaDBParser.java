@@ -99,7 +99,7 @@ public class OpenLigaDBParser {
                 spiel.setSpielZeit((String) data.get("matchDateTime"));
                 spiel.setLiga((String) data.get("leagueName"));
                String datum = (String) data.get("matchDateTime");
-               String datumstripped = datum.substring(0, 9);
+               String datumstripped = datum.substring(0, 10);
                spiel.setDatum(datumstripped);
 
                 // Parse the group
@@ -163,7 +163,7 @@ public class OpenLigaDBParser {
                 spiel.setSpielZeit((String) data.get("matchDateTime"));
                 spiel.setLiga((String) data.get("leagueName"));
                 String datum = (String) data.get("matchDateTime");
-                String datumstripped = datum.substring(0, 9);
+                String datumstripped = datum.substring(0, 10);
                 spiel.setDatum(datumstripped);
 
 
